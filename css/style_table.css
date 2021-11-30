@@ -1,0 +1,92 @@
+table{
+    width: 100%; 
+    height: 90px; 
+    border: 4px solid black;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+th{
+    padding: 5px;
+    font-size: 20px;
+    background-color: #333;
+    color: white;
+}
+td{
+    padding: 15px;
+}
+.button-aksi{
+    text-align: center;
+    padding: 5px;
+    width: 230px;
+}
+.button-aksi a{
+    text-decoration: none;
+}
+
+.btn-tambah{
+    margin-left: 20px;
+}
+
+.btn-tambah a{
+    text-decoration: none;
+}
+.tambah{
+
+    text-decoration: none;
+    background-color: #0693c2; 
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.edit{
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.hapus{
+    background-color: #f44336; 
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.page {
+    display: flex;
+    background-color: #333;
+}
+  
+.page-content {
+    width: 50px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight :bold; 
+    color: white;
+}
+
+.page-hover{
+    font-weight :bold; 
+    color: #0693c2;
+}
+
+
+

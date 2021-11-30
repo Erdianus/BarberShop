@@ -1,0 +1,162 @@
+body{
+    margin: 0;
+}
+
+/* NAVIGATION BAR */
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+li{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    float:left;
+}
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.logo{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.login{
+    float: right;
+}
+
+/* CONTAINER */
+.container{
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0 5px;
+    padding-top: 40px;
+}
+.background{
+    position: absolute;
+    z-index: -100;
+    width: 100%;
+    height: auto;
+}
+
+/* TITLE CONTAINER */
+.title{
+    height: 400px;
+    text-align: center;
+}
+.title h1{
+    font-size: 3rem;
+}
+.logo-img{
+    width: 250px;
+    height: 200px;
+    margin-bottom: 0;
+}
+
+/* BARBER MEN */
+#barber-men{
+    height: 550px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+.list-barber{
+    padding-top: 70px;
+    display: flex;
+    justify-content: space-around;
+}
+.list-barber .box{
+    width: 400px;
+    text-align: center;
+}
+.box img{
+    width: 350px;
+    height: 230px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/* HAIRCUT MODEL */
+#haircut-model{
+    height: 500px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+.list-haircut{
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.list-haircut .box{
+    width: 400;
+    text-align: center;
+}
+.list-haircut .box img{
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* MENU ADMIN */
+.admin{
+    height: 550px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+.list-menu-admin{
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.list-menu-admin .box{
+    width: 400;
+    text-align: center;
+}
+.list-menu-admin .box img{
+    width: 350px;
+    height: 300px;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.list-menu-admin .box p a{
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+} 
+
+.list-menu-admin .box p a:hover{
+    opacity: 0.8;
+}
+
+/* FOOTER */
+.footer{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    padding-top: 50px;
+    background-color: #333;
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img:hover{
+    opacity: 0.8;
+}
+
+
