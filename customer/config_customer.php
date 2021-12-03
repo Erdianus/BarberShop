@@ -48,7 +48,7 @@ function update_customer($data)
     $namaDpn = htmlspecialchars($data["namaDpn"]);
     $namaBlkg = htmlspecialchars($data["namaBlkg"]);
     $email = htmlspecialchars($data["email"]);
-    $password = htmlspecialchars($data["pass"]);
+    $password = htmlspecialchars($data["password"]);
 
 
     //update data customer

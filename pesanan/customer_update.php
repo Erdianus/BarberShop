@@ -9,21 +9,21 @@ require "config_pesanan.php";
 // ambil data di url
 $id = $_GET["id"];
 $pesanan = query("SELECT * FROM pemesanan WHERE id = $id")[0];
-
+//var_dump(query("SELECT * FROM pemesanan WHERE id = $id")[0]);die;
 if (isset($_POST["submit"])) {
+    //var_dump($_POST['id_customer']);die;
     if (update_pesanan($_POST) > 0) {
-        
         echo "
         <script>
             alert('data berhasil diupdate!');
-            document.location.href = '../pesanan.php';
+            document.location.href = '../pesan_customer.php';
         </script>
         ";
     } else {
         echo "
         <script>
             alert('data gagal diupdate!');
-            document.location.href = '../pesanan.php';
+            document.location.href = '../pesan_customer.php';
         </script>
         ";
     }
@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
                     <input type="hidden" name="status" value="<?= $pesanan["status"]; ?>">
                     <tr>
                         <td><label for="tgl">ID CUSTOMER</label></td>
-                        <td><input type="text" name="id_customer" id="id_customer" value="<?= $pesanan["id_customer"]; ?>" readonly></td>
+                        <td><input type="text" name="id_customer" id="id_customer" value="<?=$pesanan['id_customer']?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label for="tgl">TANGGAL PEMESANAN</label></td>
@@ -76,7 +76,7 @@ if (isset($_POST["submit"])) {
                 <p class="btn-regis">
                     <button class="btn registrasi" type="submit" name="submit" value="UBAH DATA">Update</button>
                 </p>
-                <a class="back" href="../pesanan.php">Kembali</a>
+                <a class="back" href="../pesan_customer.php">Kembali</a>
             </form>
         </div>
     </div>

@@ -1,12 +1,13 @@
 <?php
 session_start();
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit;
 }
 require 'config.php';
-$user = $_SESSION['user'];
+$barang = mysqli_query($conn, "SELECT * FROM barang");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ $user = $_SESSION['user'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style_table.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Data Pesanan</title>
+    <title>Data Barang</title>
 </head>
 
 <body>
@@ -38,32 +39,30 @@ $user = $_SESSION['user'];
             <h1>WELCOME TO THE BARBERSHOP</h1>
             <p>Potong rambutmu disini dan dapatkan pelayanan yang profesional dari kami </p>
         </div>
-        <!-- TABLE Pemesanan -->
+        <div class="btn-tambah">
+            <a class="tambah" href="barang/tambah.php">TAMBAH</a>
+        </div>
+        <!--TABLE BARANG-->
         <table class="table">
             <tr>
                 <th>No</th>
-                <th>ID Customer</th>
-                <th>Tanggal</th>
-                <th>ID Haircut</th>
-                <th>Status</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Stok</th>
                 <th>Aksi</th>
             </tr>
             <?php
             $i = 1;
-            $query = "SELECT * FROM pemesanan";
-            $pesanan = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            // var_dump($query);die;
-            foreach ($pesanan as $row) :
+            foreach ($barang as $row) :
             ?>
                 <tr>
                     <td><?= $i; ?></td>
-                    <td><?= $row["id_customer"]; ?></td>
-                    <td><?= $row["tgl"]; ?></td>
-                    <td><?= $row["id_haircut"]; ?></td>
-                    <td><?= $row["status"]; ?></td>
+                    <td><?= $row["nama_barang"]; ?></td>
+                    <td><?= $row["harga_barang"]; ?></td>
+                    <td><?= $row["stok"]; ?></td>
                     <td class="button-aksi">
-                        <a class="edit" href="pesanan/update.php?id=<?= $row['id']; ?>">EDIT</a> |
-                        <a class="hapus" href="pesanan/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
+                        <a class="edit" href="Barang/update.php?id=<?= $row['id']; ?>">EDIT</a> |
+                        <a class="hapus" href="Barang/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
                     </td>
                 </tr>
                 <?php $i++; ?>
@@ -73,6 +72,8 @@ $user = $_SESSION['user'];
     <div class="footer">
         Copyright © Erdianus Pagesong
     </div>
+
+
 </body>
 
 </html>

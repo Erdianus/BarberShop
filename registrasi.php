@@ -5,14 +5,14 @@ if (isset($_POST['register'])) {
         echo "
         <script>
         alert('Registrasi Berhasil!');
-            document.location.href = 'login.php';
+            document.location.href = 'index.php';
         </script>
         ";
     } else {
         echo "
         <script>
             alert('Registrasi Gagal!');
-            document.location.href = 'login.php';
+            document.location.href = 'index.php';
         </script>
         ";
     }
@@ -63,7 +63,7 @@ if (isset($_POST['register'])) {
                 <p class="btn-regis">
                     <button class="btn registrasi" type="submit" name="register">Register</button>
                 </p>
-                <a class="back" href="login.php">Kembali</a>
+                <a class="back" href="index.php">Kembali</a>
             </form>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["login"])){
-    header("Location: login.php");
+    header("Location: index.php");
     exit;
 }
 // var_dump($_SESSION["user"]);die;
@@ -19,8 +19,8 @@ if(!isset($_SESSION["login"])){
     <!-- NAVIGASTION BAR -->
     <ul>
             <li><a class="logo" href="home.php">BARBER SHOP</a></li>
-            <li><a class="logo" href="#">Pesanan Anda</a></li>
-            <li class="login"><a href="logout.php">LOGOUT</a></li>
+            <li><a class="logo" href="pesan_customer.php">Pesanan Anda</a></li>
+            <li class="login"><a href="logout.php" onclick="return confirm('Apakah anda yakin ingin logout?');">LOGOUT</a></li>
     </ul>
     
     <div class="container">

@@ -21,6 +21,7 @@ function tambah_barberman($data)
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
+    $haircut = htmlspecialchars($data["haircut"]);
 
     //mengupload gambar
 
@@ -33,7 +34,7 @@ function tambah_barberman($data)
     
     //menginput data ke database barberman
     $query = "INSERT INTO barberman VALUES 
-        ('','$nama','$email','$no_hp','$gambar')";
+        ('','$nama','$email','$no_hp','$gambar','$haircut')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn); //mengreturn jumlah row yang berubah pada tabel barberman 
 }
@@ -103,6 +104,7 @@ function update_barberman($data)
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
+    $haircut = htmlspecialchars($data["haircut"]);
     $gambarLama = htmlspecialchars($data["gambarLama"]);
 
     if($_FILES['gambar']['error'] === 4){
@@ -116,7 +118,8 @@ function update_barberman($data)
             nama = '$nama',
             email = '$email',
             no_hp = '$no_hp',
-            gambar = '$gambar'
+            gambar = '$gambar',
+            id_haircut = '$haircut'
             WHERE id = $id
             ";
     mysqli_query($conn, $query);

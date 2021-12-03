@@ -43,14 +43,14 @@ if (isset($_POST["submit"])) {
 <body>
     <div class="form">
         <div class="box-register">
-        <h1> FORM UPDATE BARBER MAN</h1>
+            <h1> FORM UPDATE BARBER MAN</h1>
             <form action="" method="post" enctype="multipart/form-data">
                 <table>
-                <input type="hidden" name="id" value="<?= $barber["id"]; ?>">
-                <input type="hidden" name="gambarLama" value="<?= $barber["gambar"]; ?>">
+                    <input type="hidden" name="id" value="<?= $barber["id"]; ?>">
+                    <input type="hidden" name="gambarLama" value="<?= $barber["gambar"]; ?>">
                     <tr>
                         <td><label for="nama">NAMA</label></td>
-                        <td><input type="text" name="nama" id="nama"  value="<?= $barber["nama"]; ?>" required></td>
+                        <td><input type="text" name="nama" id="nama" value="<?= $barber["nama"]; ?>" required></td>
                     </tr>
                     <tr>
                         <td><label for="email">EMAIL</label></td>
@@ -59,6 +59,21 @@ if (isset($_POST["submit"])) {
                     <tr>
                         <td><label for="no_hp">NO HP</label></td>
                         <td><input type="text" name="no_hp" id="no_hp" value="<?= $barber["no_hp"]; ?>" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="haircut">SPESIALIS</label></td>
+                        <td> <?php
+                                $query = "SELECT * FROM haircut";
+                                $haircut = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                                ?>
+                            <select id="haircut" name="haircut">
+                                <?php
+                                while ($data = mysqli_fetch_array($haircut)) {
+                                    echo "<option value=" . $data['id'] . ">" . $data['haircut'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="gambar">GAMBAR</label></td>

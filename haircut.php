@@ -1,12 +1,14 @@
 <?php
 session_start();
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit;
 }
 require 'config.php';
-$user = $_SESSION['user'];
+$haircut = mysqli_query($conn, "SELECT * FROM haircut");
+$crud = mysqli_query($conn, "SELECT * FROM haircut");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,7 @@ $user = $_SESSION['user'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style_table.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Data Pesanan</title>
+    <title>Data Haircut</title>
 </head>
 
 <body>
@@ -38,32 +40,28 @@ $user = $_SESSION['user'];
             <h1>WELCOME TO THE BARBERSHOP</h1>
             <p>Potong rambutmu disini dan dapatkan pelayanan yang profesional dari kami </p>
         </div>
-        <!-- TABLE Pemesanan -->
+        <div class="btn-tambah">
+            <a class="tambah" href="haircut/tambah.php">TAMBAH</a>
+        </div>
+        <!--TABLE HAIRCUT-->
         <table class="table">
             <tr>
                 <th>No</th>
-                <th>ID Customer</th>
-                <th>Tanggal</th>
-                <th>ID Haircut</th>
-                <th>Status</th>
+                <th>Nama</th>
+                <th>Harga</th>
                 <th>Aksi</th>
             </tr>
             <?php
             $i = 1;
-            $query = "SELECT * FROM pemesanan";
-            $pesanan = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            // var_dump($query);die;
-            foreach ($pesanan as $row) :
+            foreach ($haircut as $row) :
             ?>
                 <tr>
                     <td><?= $i; ?></td>
-                    <td><?= $row["id_customer"]; ?></td>
-                    <td><?= $row["tgl"]; ?></td>
-                    <td><?= $row["id_haircut"]; ?></td>
-                    <td><?= $row["status"]; ?></td>
+                    <td><?= $row["haircut"]; ?></td>
+                    <td><?= $row["harga"]; ?></td>
                     <td class="button-aksi">
-                        <a class="edit" href="pesanan/update.php?id=<?= $row['id']; ?>">EDIT</a> |
-                        <a class="hapus" href="pesanan/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
+                        <a class="edit" href="haircut/update.php?id=<?= $row['id']; ?>">EDIT</a> |
+                        <a class="hapus" href="haircut/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
                     </td>
                 </tr>
                 <?php $i++; ?>
@@ -73,6 +71,8 @@ $user = $_SESSION['user'];
     <div class="footer">
         Copyright © Erdianus Pagesong
     </div>
+
+
 </body>
 
 </html>

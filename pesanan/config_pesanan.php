@@ -24,16 +24,16 @@ function tambah_pesanan($data)
     $tgl = htmlspecialchars($data["tgl"]);
     $status = htmlspecialchars($data["status"]);
     $haircut = htmlspecialchars($data["haircut"]);
-    $user = htmlspecialchars($data["user"]);
+    $id_customer = htmlspecialchars($data["id_customer"]);
     
-    //menginput data ke database Customer
+    //menginput data ke database Pemesanan
     $query = "INSERT INTO pemesanan VALUES 
-         ('','$tgl','$status','$haircut','$user')";
+         ('','$tgl','$status','$haircut','$id_customer')";
     mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn); //mengreturn jumlah row yang berubah pada tabel Customer 
+    return mysqli_affected_rows($conn); //mengreturn jumlah row yang berubah pada tabel Pemesanan 
 }
 
-//menghapus data customer
+//menghapus data pemesanan
 function hapus_pesanan($id)
 {
     global $conn;
@@ -44,20 +44,20 @@ function hapus_pesanan($id)
 function update_pesanan($data)
 {
     global $conn;
-    $username = stripcslashes(htmlspecialchars($data["username"]));
-    $namaDpn = htmlspecialchars($data["namaDpn"]);
-    $namaBlkg = htmlspecialchars($data["namaBlkg"]);
-    $email = htmlspecialchars($data["email"]);
-    $password = htmlspecialchars($data["password"]);
+    $id = $data['id'];
+    $tgl = htmlspecialchars($data["tgl"]);
+    $status = htmlspecialchars($data["status"]);
+    $haircut = htmlspecialchars($data["haircut"]);
+    $id_customer = htmlspecialchars($data["id_customer"]);
 
 
-    //update data customer
-    $query = "UPDATE customer SET
-            password = '$password',
-            nama_depan = '$namaDpn',
-            nama_belakang = '$namaBlkg',
-            email = '$email'
-            WHERE username = $username
+    //update data pemesanan
+    $query = "UPDATE pemesanan SET
+            tgl = '$tgl',
+            status = '$status',
+            id_haircut = '$haircut',
+            id_customer = '$id_customer'
+            WHERE id = $id
             ";
     mysqli_query($conn, $query);
 

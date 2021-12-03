@@ -23,12 +23,8 @@ $user = $_SESSION['user'];
 <body>
     <!-- NAVIGASTION BAR -->
     <ul>
-        <li><a class="logo" href="admin.php">BARBER SHOP</a></li>
-        <li><a class='logo' href='barberman.php'>BarberMan</a></li>
-        <li><a class='logo' href='haircut.php'>Haircut</a></li>
-        <li><a class="logo" href="customer.php">Customer</a></li>
-        <li><a class="logo" href="pesanan.php">Pesanan</a></li>
-        <li><a class="logo" href="barang.php">Barang</a></li>
+        <li><a class="logo" href="home.php">BARBER SHOP</a></li>
+        <li><a class="logo" href="pesan_customer.php">Pesanan Anda</a></li>
         <li class="login"><a href="logout.php" onclick="return confirm('Apakah anda yakin ingin logout?');">LOGOUT</a></li>
     </ul>
 
@@ -38,21 +34,29 @@ $user = $_SESSION['user'];
             <h1>WELCOME TO THE BARBERSHOP</h1>
             <p>Potong rambutmu disini dan dapatkan pelayanan yang profesional dari kami </p>
         </div>
+        <div class="btn-tambah">
+            <a class="tambah" href="pesanan/tambah.php">PESAN</a>
+        </div>
         <!-- TABLE Pemesanan -->
         <table class="table">
             <tr>
                 <th>No</th>
-                <th>ID Customer</th>
+                <th>Nama Customer</th>
                 <th>Tanggal</th>
-                <th>ID Haircut</th>
+                <th>Model Haircut</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
             <?php
             $i = 1;
-            $query = "SELECT * FROM pemesanan";
+            //menentukan id user yang sedang login
+            $user = $_SESSION["user"];
+            $q = "SELECT * FROM customer WHERE username = '$user'";
+            $qq = mysqli_query($conn, $q);
+            $row = mysqli_fetch_assoc($qq);
+            $id = $row['id'];
+            $query = "SELECT * FROM pemesanan WHERE id_customer = '$id'";
             $pesanan = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            // var_dump($query);die;
             foreach ($pesanan as $row) :
             ?>
                 <tr>
@@ -62,8 +66,8 @@ $user = $_SESSION['user'];
                     <td><?= $row["id_haircut"]; ?></td>
                     <td><?= $row["status"]; ?></td>
                     <td class="button-aksi">
-                        <a class="edit" href="pesanan/update.php?id=<?= $row['id']; ?>">EDIT</a> |
-                        <a class="hapus" href="pesanan/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
+                        <a class="edit" href="pesanan/customer_update.php?id=<?= $row['id']; ?>">EDIT</a> |
+                        <a class="hapus" href="pesanan/customer_hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin membatalkan pesanan ini?');">BATAL</a>
                     </td>
                 </tr>
                 <?php $i++; ?>

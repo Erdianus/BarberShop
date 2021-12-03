@@ -12,7 +12,9 @@ $id = $_GET["id"];
 $customer = query("SELECT * FROM customer WHERE id = $id")[0];
 
 if (isset($_POST["submit"])) {
+    //var_dump(update_customer($_POST));die;
     if (update_customer($_POST) > 0) {
+        
         echo "
         <script>
             alert('data berhasil diupdate!');
@@ -47,6 +49,7 @@ if (isset($_POST["submit"])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <table>
                     <input type="hidden" name="id" value="<?= $customer["id"]; ?>">
+                    <input type="hidden" name="password" value="<?= $customer["pass"]; ?>">
                     <tr>
                         <td><label for="username">USERNAME</label></td>
                         <td><input type="text" name="username" id="username" value="<?= $customer["username"]; ?>" required></td>

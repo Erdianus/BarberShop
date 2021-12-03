@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["login"])) {
-    header("Location: login.php");
+    header("Location: index.php");
     exit;
 }
 // else if(!(isset($_SESSION["user"]) == "admin")){
@@ -24,12 +24,13 @@ if (!isset($_SESSION["login"])) {
 <body>
     <!-- NAVIGASTION BAR -->
     <ul>
-        <li><a class="logo" href="home.php">BARBER SHOP</a></li>
+        <li><a class="logo" href="admin.php">BARBER SHOP</a></li>
         <li><a class="logo" href="barberman.php">Barber Man</a></li>
-        <li><a class="logo" href="#">Haircut</a></li>
+        <li><a class="logo" href="haircut.php">Haircut</a></li>
         <li><a class="logo" href="customer.php">Customer</a></li>
         <li><a class="logo" href="pesanan.php">Pesanan</a></li>
-        <li class="login"><a href="logout.php">LOGOUT</a></li>
+        <li><a class="logo" href="barang.php">Barang</a></li>
+        <li class="login"><a href="logout.php" onclick="return confirm('Apakah anda yakin ingin logout?');">LOGOUT</a></li>
     </ul>
 
     <div class="container">

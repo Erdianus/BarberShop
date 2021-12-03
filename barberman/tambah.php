@@ -54,6 +54,21 @@ if (isset($_POST["submit"])) {
                         <td><input type="text" name="no_hp" id="no_hp" placeholder="NO HP" required></td>
                     </tr>
                     <tr>
+                        <td><label for="haircut">SPESIALIS</label></td>
+                        <td> <?php
+                                $query = "SELECT * FROM haircut";
+                                $haircut = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                                ?>
+                            <select id="haircut" name="haircut">
+                                <?php
+                                while ($data = mysqli_fetch_array($haircut)) {
+                                    echo "<option value=" . $data['id'] . ">" . $data['haircut'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><label for="gambar">GAMBAR</label></td>
                         <td><input type="file" name="gambar" id="gambar"></td>
                     </tr>

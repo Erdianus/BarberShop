@@ -63,7 +63,7 @@ function registrasi($data)
 
     //menginput data ke database barberman
     $query = "INSERT INTO customer VALUES 
-        ('$username','$password','$namaDpn','$namaBlkg','$email')";
+        ('','$username','$password','$namaDpn','$namaBlkg','$email')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn); //mengreturn jumlah row yang berubah pada tabel barberman
 }

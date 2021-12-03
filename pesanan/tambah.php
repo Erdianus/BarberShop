@@ -8,19 +8,19 @@ if (!isset($_SESSION["login"])) {
 $user = $_SESSION["user"];
 require "config_pesanan.php";
 if (isset($_POST["submit"])) {
-
     if (tambah_pesanan($_POST) > 0) {
+        
         echo "
         <script>
-            alert('data berhasil ditambahkan!');
-            document.location.href = '../pesanan.php';
+            alert('Pesanan berhasil dibuat!');
+            document.location.href = '../pesan_customer.php';
         </script>
         ";
     } else {
         echo "
         <script>
-            alert('data gagal ditambahkan!');
-            document.location.href = '../pesanan.php';
+            alert('Gagal Memesan!');
+            document.location.href = '../pesan_customer.php';
         </script>
         ";
     }
@@ -43,8 +43,16 @@ if (isset($_POST["submit"])) {
             <h1> FORM TAMBAH PEMESANAN</h1>
             <form action="" method="post">
                 <table>
-
-                    <input type="hidden" name="usernme" id="username" value="<?= $user; ?>" required></td>
+                    <?php
+                    //untuk mendapatkan id_customer yang sedang login
+                    $user = $_SESSION['user'];
+                    $query_custom = "SELECT * FROM customer WHERE username = '$user'";
+                    $id_user = mysqli_query($conn,$query_custom);
+                    $data_user = mysqli_fetch_array($id_user);
+                    $id = $data_user["id"];
+                    ?>
+                    <input type="hidden" name="id_customer" id="id_customer" value="<?= $id; ?>" required></td>
+                    <input type="hidden" name="status" id="status" value="Belum Bayar" required></td>
                     <tr>
                         <td><label for="haircut">MODEL HAIRCUT</label></td>
                         <td>
@@ -55,13 +63,12 @@ if (isset($_POST["submit"])) {
                             <select id="haircut" name="haircut">
                             <?php    
                             while ($data = mysqli_fetch_array($haircut)) {
-                                echo "<option value=".$data['nama'].">".$data['nama']."</option>";
+                                echo "<option value=".$data['id'].">".$data['haircut']."</option>";
                             }
                             ?>
                             </select>
                             
                         </td>
-                        <!-- <td><input type="haircut" name="haircut" id="haircut" required></td> -->
                     </tr>
                     <tr>
                         <td><label for="tgl">TANGGAL PEMESANAN</label></td>
@@ -71,7 +78,7 @@ if (isset($_POST["submit"])) {
                 <p class="btn-regis">
                     <button class="btn registrasi" type="submit" name="submit" value="PESAN">Pesan</button>
                 </p>
-                <a class="back" href="../pesanan.php">Kembali</a>
+                <a class="back" href="../pesan_customer.php">Kembali</a>
             </form>
         </div>
         </form>
