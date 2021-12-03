@@ -85,7 +85,7 @@ if (isset($_POST["submit"])) {
                 <p class="btn-regis">
                     <button class="btn registrasi" type="submit" name="submit" value="TAMBAH DATA">Tambah</button>
                 </p>
-                <a class="back" href="../barberman.php">Kembali</a>
+                <a class="back" href="../customer.php">Kembali</a>
             </form>
         </div>
     </div>

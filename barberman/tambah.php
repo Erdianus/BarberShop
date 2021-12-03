@@ -50,12 +50,8 @@ if (isset($_POST["submit"])) {
                         <td><input type="email" name="email" id="email" placeholder="EMAIL" required></td>
                     </tr>
                     <tr>
-                        <td><label for="nohp">NO HP</label></td>
-                        <td><input type="text" name="nohp" id="nohp" placeholder="NO HP" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="email">EMAIL</label></td>
-                        <td><input type="email" name="email" id="email" placeholder="EMAIL ANDA" required></td>
+                        <td><label for="no_hp">NO HP</label></td>
+                        <td><input type="text" name="no_hp" id="no_hp" placeholder="NO HP" required></td>
                     </tr>
                     <tr>
                         <td><label for="gambar">GAMBAR</label></td>
@@ -68,49 +64,6 @@ if (isset($_POST["submit"])) {
                 <a class="back" href="../barberman.php">Kembali</a>
             </form>
         </div>
-        <!-- <div class="box-crud">
-            <h1>FORM TAMBAH BARBER MAN</h1>
-            <form action="" method="post" enctype="multipart/form-data">
-                <table>
-                    <tr>
-                        <td>
-                            <label for="nama">Nama</label>
-                        </td>
-                        <td>
-                            <input type="text" name="nama" id="nama" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="email">Email</label>
-                        </td>
-                        <td>
-                            <input type="email" name="email" id="email" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="no_hp">No HP</label>
-                        </td>
-                        <td>
-                            <input type="number" name="no_hp" id="no_hp" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="gambar">Pas Photo</label>
-                        </td>
-                        <td>
-                            <input type="file" name="gambar" id="gambar">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><button class="btn" type="submit" name="submit" value="TAMBAH DATA">Tambah</td>
-                    </tr>
-                </table>
-                <p><a class="back" href="../barberman.php">KEMBALI</a></p>
-            </form>
-        </div> -->
     </div>
 </body>
 

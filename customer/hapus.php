@@ -6,9 +6,9 @@ if(!isset($_SESSION["login"])){
 }
 require "config_customer.php";
 
-$username = $_GET["username"];
+$id = $_GET["id"];
 
-if( hapus_customer($username) > 0 ){
+if( hapus_customer($id) > 0 ){
     echo "
     <script>
         alert('data berhasil dihapus!');

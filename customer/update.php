@@ -8,9 +8,8 @@ require "config_customer.php";
 
 // ambil data di url
 
-$username = $_GET["username"];
-
-$customer = query("SELECT * FROM customer WHERE username = '$username'");
+$id = $_GET["id"];
+$customer = query("SELECT * FROM customer WHERE id = $id")[0];
 
 if (isset($_POST["submit"])) {
     if (update_customer($_POST) > 0) {
@@ -40,50 +39,35 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="../css/style_crud.css">
     <title>EDIT Customer</title>
 </head>
+
 <body>
     <div class="form">
-        <div class="box-registrasi">
+        <div class="box-register">
+            <h1> FORM UPDATE CUSTOMER</h1>
             <form action="" method="post" enctype="multipart/form-data">
-                <h1> FORM UPDATE CUSTOMER</h1>
                 <table>
+                    <input type="hidden" name="id" value="<?= $customer["id"]; ?>">
                     <tr>
-                        <td>
-                            <label for="username">Username</label>
-                        </td>
-                        <td>
-                            <input type="text" name="username" id="username" value="<?= $customer["username"]; ?>" required>
-                        </td>
+                        <td><label for="username">USERNAME</label></td>
+                        <td><input type="text" name="username" id="username" value="<?= $customer["username"]; ?>" required></td>
                     </tr>
                     <tr>
-                        <td>
-                            <label for="namadpn">Nama Depan</label>
-                        </td>
-                        <td>
-                            <input type="text" name="namadpn" id="namadpn" value="<?= $customer["namaDpn"]; ?>" required>
-                        </td>
+                        <td><label for="namaDpn">NAMA DEPAN</label></td>
+                        <td><input type="namaDpn" name="namaDpn" id="namaDpn" value="<?= $customer["nama_depan"]; ?>" required></td>
                     </tr>
                     <tr>
-                        <td>
-                            <label for="namablkg">Nama Belakang</label>
-                        </td>
-                        <td>
-                            <input type="text" name="namablkg" id="namablkg" value="<?= $customer["nama_belakang"]; ?>" required>
-                        </td>
+                        <td><label for="namaBlkg">NAMA BELAKANG</label></td>
+                        <td><input type="text" name="namaBlkg" id="namaBlkg" value="<?= $customer["nama_belakang"]; ?>" required></td>
                     </tr>
                     <tr>
-                        <td>
-                            <label for="email">Email</label>
-                        </td>
-                        <td>
-                            <input type="email" name="email" id="email" value="<?= $customer["email"]; ?>" required>
-                        </td>
-                    </tr>
-                    <input type="hidden" name="password" value="<?= $customer["password"]; ?>">
-                    <tr>
-                        <td><button class="btn" type="submit" name="submit" value="UBAH DATA">Update</td>
+                        <td><label for="email">EMAIL</label></td>
+                        <td><input type="text" name="email" id="email" value="<?= $customer["email"]; ?>" required></td>
                     </tr>
                 </table>
-                <p><a class="back" href="../customer.php">KEMBALI</a></p>
+                <p class="btn-regis">
+                    <button class="btn registrasi" type="submit" name="submit" value="UBAH DATA">Update</button>
+                </p>
+                <a class="back" href="../customer.php">Kembali</a>
             </form>
         </div>
     </div>

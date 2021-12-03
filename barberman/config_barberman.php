@@ -103,8 +103,13 @@ function update_barberman($data)
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
-    $gambar = upload();
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
 
+    if($_FILES['gambar']['error'] === 4){
+        $gambar = $gambarLama;
+    }else{
+        $gambar = upload();
+    }
 
     //update data barberman
     $query = "UPDATE barberman SET

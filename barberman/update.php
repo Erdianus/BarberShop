@@ -8,7 +8,7 @@ require "config_barberman.php";
 
 // ambil data di url
 $id = $_GET["id"];
-
+// var_dump($id);die;
 $barber = query("SELECT * FROM barberman WHERE id = $id")[0];
 
 if (isset($_POST["submit"])) {
@@ -47,6 +47,7 @@ if (isset($_POST["submit"])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <table>
                 <input type="hidden" name="id" value="<?= $barber["id"]; ?>">
+                <input type="hidden" name="gambarLama" value="<?= $barber["gambar"]; ?>">
                     <tr>
                         <td><label for="nama">NAMA</label></td>
                         <td><input type="text" name="nama" id="nama"  value="<?= $barber["nama"]; ?>" required></td>
@@ -56,8 +57,8 @@ if (isset($_POST["submit"])) {
                         <td><input type="email" name="email" id="email" value="<?= $barber["email"]; ?>" required></td>
                     </tr>
                     <tr>
-                        <td><label for="nohp">NO HP</label></td>
-                        <td><input type="text" name="nohp" id="nohp" value="<?= $barber["no_hp"]; ?>" required></td>
+                        <td><label for="no_hp">NO HP</label></td>
+                        <td><input type="text" name="no_hp" id="no_hp" value="<?= $barber["no_hp"]; ?>" required></td>
                     </tr>
                     <tr>
                         <td><label for="gambar">GAMBAR</label></td>

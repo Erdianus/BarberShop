@@ -4,22 +4,22 @@ if(!isset($_SESSION["login"])){
     header("Location: ../login.php");
     exit;
 }
-require "../config.php";
+require "config_pesanan.php";
 
 $id = $_GET["id"];
 
-if( hapus_barberman($id) > 0 ){
+if( hapus_pesanan($id) > 0 ){
     echo "
     <script>
-        alert('data berhasil dihapus!');
-        document.location.href = '../barberman.php';
+        alert('Pesanan berhasil dihapus!');
+        document.location.href = '../pesanan.php';
     </script>
     ";
 }else{
     echo "
     <script>
-        alert('data gagal dihapus!');
-        document.location.href = '../barberman.php';
+        alert('Pesanan gagal dihapus!');
+        document.location.href = '../pesanan.php';
     </script>
     ";
 }

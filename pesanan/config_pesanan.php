@@ -1,4 +1,5 @@
 <?php
+
 $conn = mysqli_connect("localhost", "root", "", "barbershop");
 
 function query($query)
@@ -13,52 +14,50 @@ function query($query)
     return $rows;
 }
 
-// CONFIGUARTION TABEL CUSTOMER
 
-//menambah data CUSTOMER
-function tambah_customer($data)
+// CONFIGUARTION TABEL PEMESANAN
+
+//menambah data PESANAN
+function tambah_pesanan($data)
 {
-    global $conn;
-    $username = htmlspecialchars($data["username"]);
-    $password = htmlspecialchars($data["password"]);
-    $namaDpn = htmlspecialchars($data["namaDpn"]);
-    $namaBlkg = htmlspecialchars($data["namaBlkg"]);
-    $email = htmlspecialchars($data["email"]);
+    global $conn,$user;
+    $tgl = htmlspecialchars($data["tgl"]);
+    $status = htmlspecialchars($data["status"]);
+    $haircut = htmlspecialchars($data["haircut"]);
+    $user = htmlspecialchars($data["user"]);
     
     //menginput data ke database Customer
-    $query = "INSERT INTO customer VALUES 
-        ('','$username','$password','$namaDpn','$namaBlkg','$email')";
+    $query = "INSERT INTO pemesanan VALUES 
+         ('','$tgl','$status','$haircut','$user')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn); //mengreturn jumlah row yang berubah pada tabel Customer 
 }
 
 //menghapus data customer
-function hapus_customer($id)
+function hapus_pesanan($id)
 {
     global $conn;
-    mysqli_query($conn, "DELETE FROM customer WHERE id = $id");
+    mysqli_query($conn, "DELETE FROM pemesanan WHERE id = $id");
     return mysqli_affected_rows($conn);
 }
 
-function update_customer($data)
-{   
+function update_pesanan($data)
+{
     global $conn;
-    $id = $data["id"];
     $username = stripcslashes(htmlspecialchars($data["username"]));
     $namaDpn = htmlspecialchars($data["namaDpn"]);
     $namaBlkg = htmlspecialchars($data["namaBlkg"]);
     $email = htmlspecialchars($data["email"]);
-    $password = htmlspecialchars($data["pass"]);
+    $password = htmlspecialchars($data["password"]);
 
 
     //update data customer
     $query = "UPDATE customer SET
-            username = '$username',
-            pass = '$password',
+            password = '$password',
             nama_depan = '$namaDpn',
             nama_belakang = '$namaBlkg',
             email = '$email'
-            WHERE id = $id
+            WHERE username = $username
             ";
     mysqli_query($conn, $query);
 

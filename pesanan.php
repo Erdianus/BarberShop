@@ -6,14 +6,12 @@ if (!isset($_SESSION["login"])) {
 }
 require 'config.php';
 // Konfigurasi Pagination
-$result = mysqli_query($conn, "SELECT * FROM customer");
+$result = mysqli_query($conn, "SELECT * FROM pemesanan");
 $jumlahDataPerHalaman = 4;
 $jumlahData = mysqli_num_rows($result);
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman); //ceil adalah pembulatan bilangan keatas
 $halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
 $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
-$customer = mysqli_query($conn, "SELECT * FROM customer LIMIT $awalData, $jumlahDataPerHalaman");
-$crud = mysqli_query($conn, "SELECT * FROM customer");
 ?>
 
 
@@ -26,15 +24,15 @@ $crud = mysqli_query($conn, "SELECT * FROM customer");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style_table.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Data Customer</title>
+    <title>Data Pesanan</title>
 </head>
 
 <body>
     <!-- NAVIGASTION BAR -->
     <ul>
         <li><a class="logo" href="admin.php">BARBER SHOP</a></li>
-        <li><a class="logo" href="barberman.php">BarberMan</a></li>
-        <li><a class="logo" href="#">Haircut</a></li>
+        <li><a class='logo' href='barberman.php'>BarberMan</a></li>
+        <li><a class='logo' href='#'>Haircut</a></li>
         <li><a class="logo" href="customer.php">Customer</a></li>
         <li><a class="logo" href="pesanan.php">Pesanan</a></li>
         <li class="login"><a href="logout.php">LOGOUT</a></li>
@@ -46,11 +44,9 @@ $crud = mysqli_query($conn, "SELECT * FROM customer");
             <h1>WELCOME TO THE BARBERSHOP</h1>
             <p>Potong rambutmu disini dan dapatkan pelayanan yang profesional dari kami </p>
         </div>
-        <div class="btn-tambah">
-            <a class="tambah" href="customer/tambah.php">TAMBAH</a>
-        </div>
-        <!--TABLE CUSTOMER-->
+        <!-- TABLE Pemesanan -->
         <table class="table">
+
             <!--PAGINATION-->
             <div class="page">
                 <?php if ($halamanAktif > 1) : ?>
@@ -83,25 +79,30 @@ $crud = mysqli_query($conn, "SELECT * FROM customer");
 
             <tr>
                 <th>No</th>
-                <th>Username</th>
-                <th>Nama Depan</th>
-                <th>Nama Belakang</th>
-                <th>Email</th>
+                <th>Nama Customer</th>
+                <th>Tanggal</th>
+                <th>Model Haircut</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
             <?php
             $i = 1;
-            foreach ($customer as $row) :
+            $query = "SELECT * FROM pemesanan
+                    INNER JOIN customer ON pemesanan.id_customer = customer.id
+                    INNER JOIN haircut ON pemesanan.id_haircut = haircut.id";
+            $pesanan = mysqli_query($conn,$query) or die(mysqli_error($conn));
+            // var_dump($query);die;
+            foreach ($pesanan as $row) :
             ?>
                 <tr>
                     <td><?= $i; ?></td>
                     <td><?= $row["username"]; ?></td>
-                    <td><?= $row["nama_depan"]; ?></td>
-                    <td><?= $row["nama_belakang"]; ?></td>
-                    <td><?= $row["email"]; ?></td>
+                    <td><?= $row["tgl"]; ?></td>
+                    <td><?= $row["nama"]; ?></td>
+                    <td><?= $row["status"]; ?></td>
                     <td class="button-aksi">
-                        <a class="edit" href="customer/update.php?id=<?= $row['id']; ?>">EDIT</a> |
-                        <a class="hapus" href="customer/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
+                        <a class="edit" href="pesanan/update.php?id=<?= $row['id']; ?>">EDIT</a> |
+                        <a class="hapus" href="pesanan/hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">HAPUS</a>
                     </td>
                 </tr>
                 <?php $i++; ?>

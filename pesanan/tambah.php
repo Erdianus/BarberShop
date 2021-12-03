@@ -4,21 +4,23 @@ if (!isset($_SESSION["login"])) {
     header("Location: ../login.php");
     exit;
 }
-require "../config.php";
+
+$user = $_SESSION["user"];
+require "config_pesanan.php";
 if (isset($_POST["submit"])) {
 
-    if (tambah_barberman($_POST) > 0) {
+    if (tambah_pesanan($_POST) > 0) {
         echo "
         <script>
             alert('data berhasil ditambahkan!');
-            document.location.href = '../barberman.php';
+            document.location.href = '../pesanan.php';
         </script>
         ";
     } else {
         echo "
         <script>
             alert('data gagal ditambahkan!');
-            document.location.href = '../barberman.php';
+            document.location.href = '../pesanan.php';
         </script>
         ";
     }
@@ -32,54 +34,47 @@ if (isset($_POST["submit"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_crud.css">
-    <title>Document</title>
+    <title>Data Pesanan</title>
 </head>
 
 <body>
     <div class="form">
-        <div class="box-crud">
-            <h1>FORM TAMBAH BARBER MAN</h1>
-            <form action="" method="post" enctype="multipart/form-data">
+        <div class="box-register">
+            <h1> FORM TAMBAH PEMESANAN</h1>
+            <form action="" method="post">
                 <table>
+
+                    <input type="hidden" name="usernme" id="username" value="<?= $user; ?>" required></td>
                     <tr>
+                        <td><label for="haircut">MODEL HAIRCUT</label></td>
                         <td>
-                            <label for="nama">Nama</label>
+                            <?php
+                            $query = "SELECT * FROM haircut";
+                            $haircut = mysqli_query($conn,$query) or die(mysqli_error($conn));
+                            ?>
+                            <select id="haircut" name="haircut">
+                            <?php    
+                            while ($data = mysqli_fetch_array($haircut)) {
+                                echo "<option value=".$data['nama'].">".$data['nama']."</option>";
+                            }
+                            ?>
+                            </select>
+                            
                         </td>
-                        <td>
-                            <input type="text" name="nama" id="nama" required>
-                        </td>
+                        <!-- <td><input type="haircut" name="haircut" id="haircut" required></td> -->
                     </tr>
                     <tr>
-                        <td>
-                            <label for="email">Email</label>
-                        </td>
-                        <td>
-                            <input type="email" name="email" id="email" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="no_hp">No HP</label>
-                        </td>
-                        <td>
-                            <input type="number" name="no_hp" id="no_hp" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="gambar">Pas Photo</label>
-                        </td>
-                        <td>
-                            <input type="file" name="gambar" id="gambar">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><button class="btn" type="submit" name="submit" value="TAMBAH DATA">Tambah</td>
+                        <td><label for="tgl">TANGGAL PEMESANAN</label></td>
+                        <td><input type="datetime-local" name="tgl" id="tgl" required></td>
                     </tr>
                 </table>
-                <p><a class="back" href="../barberman.php">KEMBALI</a></p>
+                <p class="btn-regis">
+                    <button class="btn registrasi" type="submit" name="submit" value="PESAN">Pesan</button>
+                </p>
+                <a class="back" href="../pesanan.php">Kembali</a>
             </form>
         </div>
+        </form>
     </div>
 </body>
 

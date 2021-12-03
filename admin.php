@@ -28,6 +28,7 @@ if (!isset($_SESSION["login"])) {
         <li><a class="logo" href="barberman.php">Barber Man</a></li>
         <li><a class="logo" href="#">Haircut</a></li>
         <li><a class="logo" href="customer.php">Customer</a></li>
+        <li><a class="logo" href="pesanan.php">Pesanan</a></li>
         <li class="login"><a href="logout.php">LOGOUT</a></li>
     </ul>
 
@@ -52,6 +53,10 @@ if (!isset($_SESSION["login"])) {
                 <div class="box">
                     <a href="#"><img src="img/haircut.jpg" alt="Haircuts"></a>
                     <p><a href="#">Daftar Haircuts</a></P>
+                </div>
+                <div class="box">
+                    <a href="#"><img src="img/pesanan.png" alt="Pesanan"></a>
+                    <p><a href="#">Daftar Pesanan</a></P>
                 </div>
             </div>
         </div>
